@@ -1,4 +1,4 @@
-package ru.knyazev.task1;
+package ru.knyazev.lesson1.task1;
 
 import java.util.Arrays;
 
