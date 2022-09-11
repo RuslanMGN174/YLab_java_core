@@ -1,31 +1,28 @@
 package ru.knyazev.lesson2.task2;
 
-import org.jetbrains.annotations.NotNull;
+import lombok.NonNull;
 
 import java.util.Arrays;
 
 public class Main {
-    public static void main(String[] args) {
-        int[] array = new int[]{3, 4, 2, 7};
 
+    public static void main(String[] args) {
+        int[] array = new int[]{5, 4, 2, 7};
         System.out.println(twoElementsOfArrayInTarget(array, 10));
     }
 
-    public static @NotNull String twoElementsOfArrayInTarget(int[] arr, int target) {
-        int firstValue;
+    public static @NonNull String twoElementsOfArrayInTarget(int[] arr, int target) {
+        if (arr == null) return "array is null";
+
         int secondValue;
         int index;
 
         Arrays.sort(arr);
         for (int i = 0; i < arr.length; i++) {
-            firstValue = arr[i];
-            secondValue = target - firstValue;
-            index = Arrays.binarySearch(arr, i, arr.length, secondValue);
-
-            if (index > 0 && arr[i] + arr[index] == target) {
-                return Arrays.toString(new int[]{arr[i], arr[index]});
-            }
+            secondValue = target - arr[i];
+            index = Arrays.binarySearch(arr, i + 1, arr.length, secondValue);
+            if (index > 0) return Arrays.toString(new int[]{arr[i], arr[index]});
         }
-        return "В массиве нет пары с суммой " + target;
+        return "There are no elements with sum " + target;
     }
 }

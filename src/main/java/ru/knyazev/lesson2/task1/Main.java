@@ -4,8 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Comparator;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -34,6 +35,7 @@ public class Main {
         }
     }
 
+
     private static Person[] RAW_DATA = new Person[]{
             new Person(0, "Harry"),
             new Person(0, "Harry"), // дубликат
@@ -49,10 +51,17 @@ public class Main {
             new Person(8, "Amelia"),
     };
 
+    private static Person[] RAW_DATA2 = null;
+
     public static void main(String[] args) {
-        List<Person> list = Arrays.asList(RAW_DATA);
-        list.stream()
+        Arrays.stream(Optional.ofNullable(RAW_DATA2)
+                        .orElseGet(() -> {
+                            System.out.println("array is null or empty");
+                            return new Person[0];
+                        }))
                 .distinct()
+                .filter(Objects::nonNull)
+                .sorted(Comparator.comparing(Person::getId))
                 .collect(Collectors.groupingBy(Person::getName, Collectors.counting()))
                 .forEach((s, count) -> System.out.printf("Key: %s%nValue: %d%n", s, count));
     }
