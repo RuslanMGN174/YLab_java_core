@@ -8,11 +8,11 @@ public class Lesson2Test {
 
     @Test
     public void testFuzzySearch() {
-        assertTrue(Main.fuzzySearch("car", "ca6$$#_rtwheel")); // true
-        assertTrue(Main.fuzzySearch("cwhl", "cartwheel")); // true
-        assertTrue(Main.fuzzySearch("cwhee", "cartwheel")); // true
-        assertTrue(Main.fuzzySearch("cartwheel", "cartwheel")); // true
-        assertFalse(Main.fuzzySearch("cwheeel", "cartwheel")); // false
-        assertFalse(Main.fuzzySearch("lw", "cartwheel")); // false
+        assertTrue(Main.fuzzySearch2("car", "ca6$$#_rtwheel")); // true
+        assertTrue(Main.fuzzySearch2("cwhl", "cartwheel")); // true
+        assertTrue(Main.fuzzySearch2("cwhee", "cartwheel")); // true
+        assertTrue(Main.fuzzySearch2("cartwheel", "cartwheel")); // true
+        assertFalse(Main.fuzzySearch2("cwheeel", "cartwheel")); // false
+        assertFalse(Main.fuzzySearch2("lw", "cartwheel")); // false
     }
 }
