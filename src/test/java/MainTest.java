@@ -1,5 +1,5 @@
 import org.junit.jupiter.api.Test;
-import ru.knyazev.task2.Main;
+import ru.knyazev.lesson1.task2.Main;
 
 import java.util.Arrays;
 
