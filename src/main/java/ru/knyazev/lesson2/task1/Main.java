@@ -46,7 +46,7 @@ public class Main {
             new Person(4, "Jack"),
             new Person(5, "Amelia"),
             new Person(5, "Amelia"),
-            new Person(6, "Amelia"),
+            null,
             new Person(7, "Amelia"),
             new Person(8, "Amelia"),
     };
@@ -54,13 +54,13 @@ public class Main {
     private static Person[] RAW_DATA2 = null;
 
     public static void main(String[] args) {
-        Arrays.stream(Optional.ofNullable(RAW_DATA2)
+        Arrays.stream(Optional.ofNullable(RAW_DATA)
                         .orElseGet(() -> {
                             System.out.println("array is null or empty");
                             return new Person[0];
                         }))
                 .distinct()
-                .filter(Objects::nonNull)
+                .filter(p -> p != null && p.getName() != null)
                 .sorted(Comparator.comparing(Person::getId))
                 .collect(Collectors.groupingBy(Person::getName, Collectors.counting()))
                 .forEach((s, count) -> System.out.printf("Key: %s%nValue: %d%n", s, count));
