@@ -2,15 +2,11 @@ package ru.knyazev.lesson2.task3;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(fuzzySearch("car", "ca6$$#_rtwheel")); // true
-        System.out.println(fuzzySearch("cwhl", "cartwheel")); // true
-        System.out.println(fuzzySearch("cwhee", "cartwheel")); // true
-        System.out.println(fuzzySearch("cartwheel", "cartwheel")); // true
-        System.out.println(fuzzySearch("cwheeel", "cartwheel")); // false
-        System.out.println(fuzzySearch("lw", "cartwheel")); // false
     }
 
     public static boolean fuzzySearch(String searchString, String text) {
+        if (isEmptyOrNull(searchString, text)) return false;
+
         int index;
         char[] searchStringArray = searchString.toCharArray();
 
@@ -20,5 +16,9 @@ public class Main {
             text = text.substring(index + 1);
         }
         return true;
+    }
+
+    private static boolean isEmptyOrNull(String searchString, String text) {
+        return searchString == null || text == null || searchString.isEmpty() || text.isEmpty();
     }
 }
